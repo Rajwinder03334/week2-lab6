@@ -12,8 +12,24 @@ let books = [
 ];
 
 // Your API routes will go here
+app.get("/api/books", (req, res) => {
+  res.json(books);
+});
+
+app.post("/api/books", (req, res) => {
+  const newBook = {
+    id: books.length + 1,
+    title: req.body.title,
+    author: req.body.author,
+  };
+
+  books.push(newBook);
+  res.status(201).json(newBook);
+});
+
 
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
